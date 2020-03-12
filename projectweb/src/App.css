@@ -15,12 +15,31 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-body {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: left;
+  font-size: calc(7px + 2vmin);
+  color: white;
+}
+
+.App-paragraph {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: calc(7px + 2vmin);
   color: white;
 }
 
