@@ -1,0 +1,3 @@
+[submodule "code/real_code/structural-probes"]
+	path = code/real_code/structural-probes
+	url = https://github.com/mykobob/structural-probes.git
