@@ -75,8 +75,8 @@ def sentence_sentiments(sentences_map, phrases_map, sentiment_map):
     sentence_sentiments = {}
     for sentence_idx, phrase_ids in sentence_phrases_map.items():
         if len(phrase_ids) > 0:
-            #sentiments = np.average([sentiment_map[phrase_id] for phrase_id in phrase_ids])
-            sentiments = len([sentiment_map[phrase_id] for phrase_id in phrase_ids])
+            sentiments = np.average([sentiment_map[phrase_id] for phrase_id in phrase_ids])
+            #sentiments = len([sentiment_map[phrase_id] for phrase_id in phrase_ids])
         else:
             print(sentence_idx)
         sentence_sentiments[sentence_idx] = sentiments
@@ -95,17 +95,27 @@ phrase_ids_map = get_phrase_ids(phrase_ids_path)
 
 #print(phrase_ids_map)
 sentence_phrases_map, sentence_sentiments = sentence_sentiments(sentence_map, phrase_ids_map, sentiment_map)
-print(sentence_sentiments[1])
-print(sentence_phrases_map[1])
+#print(sentence_sentiments)
 #from collections import Counter
-#print(Counter(sentence_sentiments)[1])
-
+#partitions = [0, 0, 0, 0, 0]
+#for std in sentence_sentiments.values():
+#    if std <= .2:
+#        partitions[0] += 1
+#    elif std <= .4:
+#        partitions[1] += 1
+#    elif std <= .6:
+#        partitions[2] += 1
+#    elif std <= .8:
+#        partitions[3] += 1
+#    else:
+#        partitions[4] += 1
+#print(partitions)
 
 with open(target_dir / 'train.tsv', 'w') as train:
     with open(target_dir / 'dev.tsv', 'w') as dev:
         for idx, label in splits_map.items():
-            if label == 2:
-                dev.write(f'{sentence_map[idx]}\t{splits_map[idx]}\n')
+            if label == 3:
+                dev.write(f'{sentence_map[idx]}\t{sentence_sentiments[idx]}\n')
             elif label == 1:
-                train.write(f'{sentence_map[idx]}\t{splits_map[idx]}\n')
+                train.write(f'{sentence_map[idx]}\t{sentence_sentiments[idx]}\n')
 
